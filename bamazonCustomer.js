@@ -64,7 +64,11 @@ var checkQuant = function(answers) {
         (err, res) => {
             if (err) throw err;
             if (res[0].stock_quantity >= parseInt(answers.quantity)) {
+                var newQuant = (res[0].stock_quantity 
+                    - parseInt(answers.quantity));
+
                 console.log('That item is in stock!');
+                updateQuant(newQuant, answers.item_id);
             } else {
                 console.log('Sorry, that item is out of stock!');
             };
@@ -72,10 +76,12 @@ var checkQuant = function(answers) {
 };
 
 // Updates quantity of ordered items
-var updateQuant = function(answers) {
-    connectino.query(
-        ("UPDATE stock_quantity FROM products WHERE item_id = " +
-        answers.item_id), (err, res) => {
+var updateQuant = function(newQuant, item_id) {
+    connection.query(
+        ("UPDATE products SET stock_quantity = " + newQuant +
+        " WHERE item_id = " + item_id), 
+        (err, res) => {
             if (err) throw err;
-        })
-}
+            console.log(res);
+        });
+};
