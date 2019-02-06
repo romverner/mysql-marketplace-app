@@ -1,0 +1,30 @@
+{
+  "name": "mysql-marketplace-app",
+  "version": "1.0.0",
+  "description": "A simple model of a marketplace interface using mysql, node, and inquirer.",
+  "main": "bamazonCustomer.js",
+  "scripts": {
+    "test": "'node bamazonCustomer.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/romverner/mysql-marketplace-app.git"
+  },
+  "keywords": [
+    "marketplace",
+    "node",
+    "inquirer",
+    "mysql",
+    "database"
+  ],
+  "author": "Roman Verner",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/romverner/mysql-marketplace-app/issues"
+  },
+  "homepage": "https://github.com/romverner/mysql-marketplace-app#readme",
+  "dependencies": {
+    "inquirer": "^6.2.2",
+    "mysql": "^2.16.0"
+  }
+}
