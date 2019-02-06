@@ -22,9 +22,10 @@ var displayStock = function() {
             if (err) throw err;
             for (var i = 0; i < res.length; i++) {
                 console.log(
-                    'Item ID: ' + res[i].item_id + '\n' +
-                    'Product: ' + res[i].product_name + '\n' +
-                    'Price: $' + res[i].price + '\n'
+                    '---------------------------------------\n' +
+                    '\n    Item ID: ' + res[i].item_id + '\n' +
+                    '    Product: ' + res[i].product_name + '\n' +
+                    '    Price: $' + res[i].price + '\n'
                 );
             };
         });
