@@ -64,11 +64,11 @@ var checkQuant = function(answers) {
         (err, res) => {
             if (err) throw err;
             if (res[0].stock_quantity >= parseInt(answers.quantity)) {
-                var newQuant = (res[0].stock_quantity 
+                var newQ = (res[0].stock_quantity 
                     - parseInt(answers.quantity));
 
                 console.log('That item is in stock!');
-                updateQuant(newQuant, answers.item_id);
+                updateQuant(newQ, answers.item_id, answers.quantity);
             } else {
                 console.log('Sorry, that item is out of stock!');
             };
@@ -76,12 +76,29 @@ var checkQuant = function(answers) {
 };
 
 // Updates quantity of ordered items
-var updateQuant = function(newQuant, item_id) {
+var updateQuant = function(newQuant, item_id, desiredQuant) {
     connection.query(
         ("UPDATE products SET stock_quantity = " + newQuant +
         " WHERE item_id = " + item_id), 
         (err, res) => {
             if (err) throw err;
-            console.log(res);
+            // console.log(res.affectedRows); Should always be '1'
+            checkout(item_id, desiredQuant);
         });
+};
+
+// Shows the amount owed on the product
+var checkout = function(item_id, desiredQuant) {
+    connection.query(
+        "SELECT price FROM products WHERE item_id = " + item_id,
+        (err, res) => {
+            if (err) throw err;
+            var total = (parseFloat(desiredQuant) 
+            * parseFloat(res[0].price));
+            console.log(
+                'You owe: $' + total +
+                '\nThank you for your business! Have a nice day!'
+            );
+        });
+    connection.end();
 };
