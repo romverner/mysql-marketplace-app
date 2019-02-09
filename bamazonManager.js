@@ -33,6 +33,21 @@ var displayActions = function() {
     ])
     .then(answers => {
         // Interpret answers as case switches 
-        console.log(answers);
+        console.log(answers.action);
+
+        switch(answers) {
+            case 'View Products for Sale':
+                // displayProducts();
+                break;
+            case 'View Low Inventory':
+                // displayLow();
+                break;
+            case 'Add Inventory':
+                // addInventory();
+                break;
+            case 'Add New Product':
+                // addNew();
+                break;
+        };
     });
 };
