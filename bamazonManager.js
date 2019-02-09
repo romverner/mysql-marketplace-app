@@ -84,7 +84,7 @@ var displayLow = function() {
     connection.end();
 };
 
-// Populates an array with item names when given a query response
+// Populates an array with item names when given a sql response ob/ar
 var itemPopulate = function(response) {
     var localArray = [];
     for (var i = 0; i < response.length; i++) {
