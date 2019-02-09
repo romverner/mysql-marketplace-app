@@ -36,7 +36,7 @@ var displayActions = function() {
                 displayProducts();
                 break;
             case 'View Low Inventory':
-                // displayLow();
+                displayLow();
                 break;
             case 'Add Inventory':
                 // addInventory();
@@ -48,6 +48,7 @@ var displayActions = function() {
     });
 };
 
+// Displays all products currently for sale
 var displayProducts = function() {
     connection.query(
         "SELECT * FROM products", (err, res) => {
@@ -56,9 +57,29 @@ var displayProducts = function() {
                 console.log(
                     '\nItem ID:', res[i].item_id,
                     '  ||  Product:', res[i].product_name,
-                    '  ||  Price: $', res[i].price + '\n'
+                    '  ||  Price: $', res[i].price,
+                    '  ||  Quantity:', res[i].stock_quantity, '\n'
                 );
             };
         }
     );
+    connection.end();
+};
+
+var displayLow = function() {
+    connection.query(
+        "SELECT * FROM products WHERE stock_quantity <= 5", 
+        (err, res) => {
+            if (err) throw err;
+            for (var i =  0; i < res.length; i++) {
+                console.log(
+                    '\nItem ID:', res[i].item_id,
+                    '  ||  Product:', res[i].product_name,
+                    '  ||  Price: $', res[i].price,
+                    '  ||  Quantity:', res[i].stock_quantity, '\n'
+                );
+            };
+        }
+    );
+    connection.end();
 };
