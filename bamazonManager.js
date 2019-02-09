@@ -39,7 +39,7 @@ var displayActions = function() {
                 displayLow();
                 break;
             case 'Add Inventory':
-                // addInventory();
+                addInventory();
                 break;
             case 'Add New Product':
                 // addNew();
@@ -83,3 +83,31 @@ var displayLow = function() {
     );
     connection.end();
 };
+
+// Populates an array with item names when given a query response
+var itemPopulate = function(response) {
+    var localArray = [];
+    for (var i = 0; i < response.length; i++) {
+        localArray.push(response[i].product_name);
+    };
+    return localArray;
+};
+
+// Prompts user for item that needs to be ordered and asks for quantity
+var addInventory = function() {
+    connection.query(
+        "SELECT * FROM products", (err, res) => {
+            if (err) throw err;
+            inquirer.prompt([
+                {
+                    type: 'list',
+                    name: 'to-order',
+                    message: 'What item would you like to re-stock?',
+                    choices: itemPopulate(res)
+                }
+            ]).then( answers => {
+                console.log(answers);
+            })
+        }
+    )
+}
