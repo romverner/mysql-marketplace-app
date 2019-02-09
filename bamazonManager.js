@@ -107,7 +107,8 @@ var addInventory = function() {
                 }
             ]).then( answers => {
                 console.log(answers);
-            })
+            });
         }
-    )
-}
+    );
+    connection.end();
+};
