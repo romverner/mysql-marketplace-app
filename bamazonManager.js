@@ -13,7 +13,6 @@ connection.connect(err => {
     if (err) throw err;
     console.log('Connected as id ' + connection.threadId);
     displayActions();
-    connection.end();
 });
 
 var displayActions = function() {
@@ -32,12 +31,9 @@ var displayActions = function() {
         }
     ])
     .then(answers => {
-        // Interpret answers as case switches 
-        console.log(answers.action);
-
-        switch(answers) {
+        switch(answers.action) {
             case 'View Products for Sale':
-                // displayProducts();
+                displayProducts();
                 break;
             case 'View Low Inventory':
                 // displayLow();
@@ -50,4 +46,19 @@ var displayActions = function() {
                 break;
         };
     });
+};
+
+var displayProducts = function() {
+    connection.query(
+        "SELECT * FROM products", (err, res) => {
+            if (err) throw err;
+            for (var i =  0; i < res.length; i++) {
+                console.log(
+                    '\nItem ID:', res[i].item_id,
+                    '  ||  Product:', res[i].product_name,
+                    '  ||  Price: $', res[i].price + '\n'
+                );
+            };
+        }
+    );
 };
