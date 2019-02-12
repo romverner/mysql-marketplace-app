@@ -71,6 +71,7 @@ var checkQuant = function(answers) {
                 updateQuant(newQ, answers.item_id, answers.quantity);
             } else {
                 console.log('Sorry, that item is out of stock!');
+                connection.end();
             };
         });
 };
