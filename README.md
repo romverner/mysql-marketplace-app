@@ -10,13 +10,13 @@ prior to running either file -- using MySQL in this instance.
 
 ## Getting Started
 
-To get this app working you'll need to follow some fairly easy steps:
-1. Clone to repo to your destination of choice.
+To get this app working you'll need to follow some fairly simple steps:
+1. Clone the repo to your destination of choice.
 2. In the same directory, run the command 'npm i' to install required pacakges
-3. Create a database via MySQL and name it 'bamazon' (NOTE: An sql shema file is included, if you're just testing this code, feel free to simply run that schema file and you'll have an auto-populated database of a few items that can be used for testing the app).
-4. Change the password in the config variable of each '.js' file to match your local password on your computer.
+3. Create a database via MySQL and name it 'bamazon' (NOTE: An sql shema file is included, if you're just testing this code, run that schema file and you'll have an auto-populated database of a few items that can be used for testing the app).
+4. Change the password in the config variable of each '.js' file to match your localhost password on your machine.
 
-This app uses inquirer to prompt users for actions. No custom input is necessary to access functionality.
+This app uses inquirer to prompt users for actions. No custom input is necessary to access app functionality.
 
 ### Authors
 Roman Verner
